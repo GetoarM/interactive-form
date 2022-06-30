@@ -158,41 +158,83 @@ function validationFail (element){
     element.parentElement.lastElementChild.hidden = false;
   }
 
-//Input Validators that test with regex and returns a boolean value
+//Assigning html elements for validation hints
+const nameHint = document.getElementById('name-hint');
+const emailHint = document.getElementById('email-hint');
+const cvvHint = document.getElementById('cvv-hint');
+const ccHint = document.getElementById('cc-hint');
+const zipHint = document.getElementById('zip-hint');
+const activitiesHint = document.getElementById('activities-hint');
 
+/*
+   Validaton and testing for each input form and assigning style 
+   displays depending on the boolean return value
+*/
 const nameValidator = () => {
     const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(username.value);
-    nameIsValid ? validationPass(username) : validationFail(username);
+    if (nameIsValid){
+        nameHint.style.display = 'none';
+        validationPass(username);
+    } else {
+        nameHint.style.display = 'block';
+        validationFail(username);
+    }
     return nameIsValid;
 }
 
 const emailValidator = () => {
     const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
-    emailIsValid ? validationPass(email) : validationFail(email);
+    if (emailIsValid){
+        emailHint.style.display = 'none';
+        validationPass(email);
+    } else {
+        emailHint.style.display = 'block';
+        validationFail(email);
+    }
     return emailIsValid
 }
 const ccNumValidator = () => {
     const ccNumIsValid = /^\d{13,16}$/.test(ccNum.value);
-    ccNumIsValid ? validationPass(ccNum) : validationFail(ccNum);
+    if (ccNumIsValid){
+        ccHint.style.display = 'none';
+        validationPass(ccNum);
+    } else {
+        ccHint.style.display = 'block';
+        validationFail(ccNum);
+    }
     return ccNumIsValid
 }
 const zipValidator = () => {
     const zipIsValid = /^\d{5}$/.test(zipCode.value);
-    zipIsValid ? validationPass(zipCode) : validationFail(zipCode);
+    if (zipIsValid){
+        zipHint.style.display = 'none';
+        validationPass(zipCode);
+    } else {
+        zipHint.style.display = 'block';
+        validationFail(zipCode);
+    }
     return zipIsValid
 }
 const cvvValidator = () => {
     const cvvIsValid = /^\d{3}$/.test(cvv.value);
-    cvvIsValid ? validationPass(cvv) : validationFail(cvv);
+    if (cvvIsValid){
+        cvvHint.style.display = 'none';
+        validationPass(cvv);
+    } else {
+        cvvHint.style.display = 'block';
+        validationFail(cvv);
+    }
     return cvvIsValid
 }
 
 const activitiesValidator = () => {
     let activitiesIsValid = 0 < totalCost;
     if (!activitiesIsValid) {
+            activitiesHint.style.display = 'block';
             activities.className = 'activities not-valid';
             activities.lastElementChild.hidden = true;
       } else {
+            activitiesHint.style.display = 'none';
             activities.className = 'activities valid';
             activities.lastElementChild.hidden = false;
       }
@@ -250,8 +292,9 @@ for (let i = 0; i < checkbox.length; i++) {
 /* 
     Real Time Validation
 */
-username.addEventListener('keyup', nameValidator)
-email.addEventListener('keyup', emailValidator)
+activities.addEventListener('change', activitiesValidator);
+username.addEventListener('keyup', nameValidator);
+email.addEventListener('keyup', emailValidator);
 ccNum.addEventListener('keyup', ccNumValidator);
 zipCode.addEventListener('keyup', zipValidator);
 cvv.addEventListener('keyup', cvvValidator);
