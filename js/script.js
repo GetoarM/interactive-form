@@ -3,16 +3,14 @@ const username = document.getElementById('name');
 username.focus()
 /*
     Job role Section
+    
+    When the "Other" option is selected/deselected from "Job Role" menu,
+    the "Other job role" field is visible/hidden on the page.
 */
 const otherJobRole = document.querySelector('#other-job-role');
 otherJobRole.style.display = 'none';
 
-/*
-    When the "Other" option is selected/deselected from "Job Role" menu,
-    the "Other job role" field should be visible/hidden on the page.
-*/
 title.addEventListener('change', (e) => {
-
     if (e.target.value === 'other'){
         otherJobRole.style.display = 'initial';
     } else {
@@ -22,17 +20,16 @@ title.addEventListener('change', (e) => {
 
 /*
     T-Shirt Info Section
+
+    When a theme is selected, the "Color" field is enabled
+    and it’s value is updated along with the options in the "Color" 
+    drop-down menu.
 */
 const designSelectElement = document.getElementById('design');
 const colorSelectElement = document.getElementById('color');
 const colorOptions = colorSelectElement.children;
 colorSelectElement.disabled = true;
 
-/*
-    when a theme is selected, the "Color" field is enabled
-    and it’s value is updated along with the options in the "Color" 
-    drop-down menu.
-*/
 designSelectElement.addEventListener('change', (e) =>{
     colorSelectElement.disabled = false;
 
@@ -51,15 +48,14 @@ designSelectElement.addEventListener('change', (e) =>{
 });
 /*
     Register For Activites Section
+
+    When an activity is checked/unchecked, the total cost text below
+    the activity section is updated in real time. 
 */
 const activities = document.getElementById('activities');
 const activitiesCost = document.getElementById('activities-cost');
 let totalCost = 0;
 
-/*
-    when an activity is checked/unchecked, the total cost text below
-    the activity section is updated in real time. 
-*/
 activities.addEventListener('change', (e) =>{
     let dataCost = parseInt(e.target.getAttribute('data-cost'));
     if (e.target.checked){
@@ -68,7 +64,7 @@ activities.addEventListener('change', (e) =>{
         totalCost -= dataCost;
     }
     activitiesCost.innerHTML = `Total: $${totalCost}`;
-    
+
 /*  
     The user is prevented from selecting two activities
     that are at the same day and time
@@ -108,6 +104,9 @@ activities.addEventListener('change', (e) =>{
 
 /*
     Payment Info Section
+
+    When the payment method option is updated in the drop-down menu,
+    the payment sections in the form will update accordingly
 */
 
 const email = document.getElementById('email');
@@ -119,10 +118,6 @@ payment[1].setAttribute('selected', '');
 bitcoin.hidden = true;
 paypal.hidden = true;
 
-/*
-   when the payment method option is updated in the drop-down menu,
-   the payment sections in the form will update accordingly
-*/
 payment.addEventListener('change', (e) =>{
     const change = e.target.value;
     if (change === 'bitcoin'){
@@ -141,6 +136,8 @@ payment.addEventListener('change', (e) =>{
 });
 /*
     Form Validation Section
+
+    ADDS & REMOVES css class name depending on the validation
 */
 const activitiesBox = document.getElementById('activities-box');
 const zipCode = document.getElementById('zip');
@@ -149,9 +146,6 @@ const ccNum = document.getElementById('cc-num');
 const form = document.querySelector('form');
 const checkbox = document.querySelectorAll("input[type=checkbox]");
 
-/*
-    ADDS & REMOVES css class name depending on the validation
-*/
 function validationPass (element){
     element.parentElement.className = 'valid';
     element.parentElement.remove.className = 'not-valid';
@@ -164,9 +158,8 @@ function validationFail (element){
     element.parentElement.lastElementChild.hidden = false;
   }
 
-/*
-  Input Validators that test with regex and returns a boolean value
-*/
+//Input Validators that test with regex and returns a boolean value
+
 const nameValidator = () => {
     const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(username.value);
     nameIsValid ? validationPass(username) : validationFail(username);
@@ -206,10 +199,14 @@ const activitiesValidator = () => {
       
       return activitiesIsValid;
 };
+
 /*
+    Submit Form Event Listener
+
     When the submit button is clicked, the form submmits
     and refreshes if all the required fields are valid.
 */
+
 form.addEventListener('submit', e => {
 
     //e.preventDefault();
