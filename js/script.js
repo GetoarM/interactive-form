@@ -1,8 +1,10 @@
 /*
     Job role Section
 */
+const nameError = document.querySelector('#name-hint').textContent;
 const username = document.getElementById('name');
 username.focus()
+console.log(nameError)
 const otherJobRole = document.querySelector('#other-job-role');
 otherJobRole.style.display = 'none';
 
@@ -186,8 +188,8 @@ for (let i = 0; i < checkbox.length; i++) {
     });
 };
 
-username.addEventListener('keyup', () => nameValidator())
-email.addEventListener('keyup', () => emailValidator())
-ccNum.addEventListener('keyup',() => ccNumValidator());
-zipCode.addEventListener('keyup', () => zipValidator());
-cvv.addEventListener('keyup', () => cvvValidator());
+username.addEventListener('keyup', nameValidator)
+email.addEventListener('keyup', emailValidator)
+ccNum.addEventListener('keyup', ccNumValidator);
+zipCode.addEventListener('keyup', zipValidator);
+cvv.addEventListener('keyup', cvvValidator);
