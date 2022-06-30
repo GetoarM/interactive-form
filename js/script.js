@@ -147,15 +147,15 @@ const form = document.querySelector('form');
 const checkbox = document.querySelectorAll("input[type=checkbox]");
 
 function validationPass (element, elementHint){
-    element.parentElement.className = 'valid';
-    element.parentElement.remove.className = 'not-valid';
+    element.parentElement.classList.add('valid');
+    element.parentElement.classList.remove('not-valid')
     element.parentElement.lastElementChild.hidden = true;
     elementHint.style.display = 'none';
   }
 
 function validationFail (element, elementHint){
-    element.parentElement.className = 'not-valid';
-    element.parentElement.remove.className = 'valid';
+    element.parentElement.classList.add('not-valid');
+    element.parentElement.classList.remove('valid');
     element.parentElement.lastElementChild.hidden = false;
     elementHint.style.display = 'block';
   }
@@ -201,19 +201,9 @@ const cvvValidator = () => {
 
 const activitiesValidator = () => {
     let activitiesIsValid = 0 < totalCost;
-    if (!activitiesIsValid) {
-            activitiesHint.style.display = 'block';
-            activities.className = 'activities not-valid';
-            activities.lastElementChild.hidden = true;
-      } else {
-            activitiesHint.style.display = 'none';
-            activities.className = 'activities valid';
-            activities.lastElementChild.hidden = false;
-      }
-      
+    activitiesIsValid ? validationPass(activitiesBox, activitiesHint): validationFail(activitiesBox, activitiesHint) 
       return activitiesIsValid;
 };
-
 /*
     Submit Form Event Listener
 
