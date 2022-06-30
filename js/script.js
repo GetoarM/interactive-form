@@ -68,6 +68,42 @@ activities.addEventListener('change', (e) =>{
         totalCost -= dataCost;
     }
     activitiesCost.innerHTML = `Total: $${totalCost}`;
+    
+/*  
+    The user is prevented from selecting two activities
+    that are at the same day and time
+*/  
+    if (checkbox[1].checked){
+        checkbox[3].disabled = true;
+        checkbox[3].parentElement.className = 'disabled';
+    } else {
+        checkbox[3].disabled = false;
+        checkbox[3].parentElement.classList.remove('disabled');
+    }
+
+    if (checkbox[3].checked){
+        checkbox[1].disabled = true;
+        checkbox[1].parentElement.className = 'disabled';
+    } else {
+        checkbox[1].disabled = false;
+        checkbox[1].parentElement.classList.remove('disabled');
+    }
+
+    if (checkbox[2].checked){
+        checkbox[4].disabled = true;
+        checkbox[4].parentElement.className = 'disabled';
+    } else {
+        checkbox[4].disabled = false;
+        checkbox[4].parentElement.classList.remove('disabled');
+    }
+
+    if (checkbox[4].checked){
+        checkbox[2].disabled = true;
+        checkbox[2].parentElement.className = 'disabled';
+    } else {
+        checkbox[2].disabled = false;
+        checkbox[2].parentElement.classList.remove('disabled');
+    }
 });
 
 /*
