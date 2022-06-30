@@ -111,7 +111,7 @@ const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
 const ccNum = document.getElementById('cc-num');
 const form = document.querySelector('form');
-const checkbox = document.querySelector('input[type=checkbox]');
+const checkbox = document.querySelectorAll("input[type=checkbox]");
 
 /*
     ADDS & REMOVES css class name depending on the validation
