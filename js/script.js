@@ -136,8 +136,15 @@ const cvvValidator = () => {
 
 const activitiesValidator = () => {
     let activitiesIsValid = 0 < totalCost;
-    activitiesIsValid ? validationPass(activitiesBox) : validationFail(activitiesBox);
-    return activitiesIsValid; 
+    if (!activitiesIsValid) {
+            activities.className = 'activities not-valid';
+            activities.lastElementChild.hidden = true;
+      } else {
+            activities.className = 'activities valid';
+            activities.lastElementChild.hidden = false;
+      }
+      
+      return activitiesIsValid;
 };
 
 form.addEventListener('submit', e => {
@@ -181,6 +188,6 @@ for (let i = 0; i < checkbox.length; i++) {
 
 username.addEventListener('keyup', () => nameValidator())
 email.addEventListener('keyup', () => emailValidator())
-
-
-  
+ccNum.addEventListener('keyup',() => ccNumValidator());
+zipCode.addEventListener('keyup', () => zipValidator());
+cvv.addEventListener('keyup', () => cvvValidator());
