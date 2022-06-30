@@ -11,7 +11,7 @@ Testing real time validation with regular expressions
 
 ![Page Screen](/img/Screenshot_1.png)
 
-The USERNAME input field tests if is at least a first name only letters, and allows for a middle and last name<br />
+The USERNAME input field tests that there is at least a first name containing only letters, and allows for a middle and last name<br />
 /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/
 
 The EMAIL input field tests that email is validly formatted.<br />
@@ -30,4 +30,4 @@ The CREDIT CARD NUMBER input field tests that it contains only 3 digits.<br />
 
 
 
-# Fictional Full Stack Conference [Link](https://getoarm.github.io/interactive-form/)
+Fictional Full Stack Conference [Link](https://getoarm.github.io/interactive-form/)
