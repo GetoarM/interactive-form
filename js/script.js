@@ -146,16 +146,18 @@ const ccNum = document.getElementById('cc-num');
 const form = document.querySelector('form');
 const checkbox = document.querySelectorAll("input[type=checkbox]");
 
-function validationPass (element){
+function validationPass (element, elementHint){
     element.parentElement.className = 'valid';
     element.parentElement.remove.className = 'not-valid';
     element.parentElement.lastElementChild.hidden = true;
+    elementHint.style.display = 'none';
   }
 
-function validationFail (element){
+function validationFail (element, elementHint){
     element.parentElement.className = 'not-valid';
     element.parentElement.remove.className = 'valid';
     element.parentElement.lastElementChild.hidden = false;
+    elementHint.style.display = 'block';
   }
 
 //Assigning html elements for validation hints
@@ -172,58 +174,28 @@ const activitiesHint = document.getElementById('activities-hint');
 */
 const nameValidator = () => {
     const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(username.value);
-    if (nameIsValid){
-        nameHint.style.display = 'none';
-        validationPass(username);
-    } else {
-        nameHint.style.display = 'block';
-        validationFail(username);
-    }
+    nameIsValid ? validationPass(username, nameHint) : validationFail(username, nameHint);
     return nameIsValid;
 }
 
 const emailValidator = () => {
     const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value);
-    if (emailIsValid){
-        emailHint.style.display = 'none';
-        validationPass(email);
-    } else {
-        emailHint.style.display = 'block';
-        validationFail(email);
-    }
+    emailIsValid? validationPass(email, emailHint) : validationFail(email, emailHint);
     return emailIsValid
 }
 const ccNumValidator = () => {
     const ccNumIsValid = /^\d{13,16}$/.test(ccNum.value);
-    if (ccNumIsValid){
-        ccHint.style.display = 'none';
-        validationPass(ccNum);
-    } else {
-        ccHint.style.display = 'block';
-        validationFail(ccNum);
-    }
+    ccNumIsValid ? validationPass(ccNum, ccHint) : validationFail(ccNum, ccHint);
     return ccNumIsValid
 }
 const zipValidator = () => {
     const zipIsValid = /^\d{5}$/.test(zipCode.value);
-    if (zipIsValid){
-        zipHint.style.display = 'none';
-        validationPass(zipCode);
-    } else {
-        zipHint.style.display = 'block';
-        validationFail(zipCode);
-    }
+    zipIsValid ? validationPass(zipCode, zipHint) : validationFail(zipCode, zipHint);
     return zipIsValid
 }
 const cvvValidator = () => {
     const cvvIsValid = /^\d{3}$/.test(cvv.value);
-    if (cvvIsValid){
-        cvvHint.style.display = 'none';
-        validationPass(cvv);
-    } else {
-        cvvHint.style.display = 'block';
-        validationFail(cvv);
-    }
+    cvvIsValid ? validationPass(cvv, cvvHint) : validationFail(cvv, cvvHint);
     return cvvIsValid
 }
 
