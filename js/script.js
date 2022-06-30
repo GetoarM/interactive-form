@@ -1,13 +1,16 @@
+//When the page loads, the text input type is in focus
+const username = document.getElementById('name');
+username.focus()
 /*
     Job role Section
 */
-const nameError = document.querySelector('#name-hint').textContent;
-const username = document.getElementById('name');
-username.focus()
-console.log(nameError)
 const otherJobRole = document.querySelector('#other-job-role');
 otherJobRole.style.display = 'none';
 
+/*
+    When the "Other" option is selected/deselected from "Job Role" menu,
+    the "Other job role" field should be visible/hidden on the page.
+*/
 title.addEventListener('change', (e) => {
 
     if (e.target.value === 'other'){
@@ -25,6 +28,11 @@ const colorSelectElement = document.getElementById('color');
 const colorOptions = colorSelectElement.children;
 colorSelectElement.disabled = true;
 
+/*
+    when a theme is selected, the "Color" field is enabled
+    and it’s value is updated along with the options in the "Color" 
+    drop-down menu.
+*/
 designSelectElement.addEventListener('change', (e) =>{
     colorSelectElement.disabled = false;
 
@@ -48,6 +56,10 @@ const activities = document.getElementById('activities');
 const activitiesCost = document.getElementById('activities-cost');
 let totalCost = 0;
 
+/*
+    when an activity is checked/unchecked, the total cost text below
+    the activity section is updated in real time. 
+*/
 activities.addEventListener('change', (e) =>{
     let dataCost = parseInt(e.target.getAttribute('data-cost'));
     if (e.target.checked){
@@ -71,6 +83,10 @@ payment[1].setAttribute('selected', '');
 bitcoin.hidden = true;
 paypal.hidden = true;
 
+/*
+   when the payment method option is updated in the drop-down menu,
+   the payment sections in the form will update accordingly
+*/
 payment.addEventListener('change', (e) =>{
     const change = e.target.value;
     if (change === 'bitcoin'){
@@ -97,6 +113,9 @@ const ccNum = document.getElementById('cc-num');
 const form = document.querySelector('form');
 const checkbox = document.querySelector('input[type=checkbox]');
 
+/*
+    ADDS & REMOVES css class name depending on the validation
+*/
 function validationPass (element){
     element.parentElement.className = 'valid';
     element.parentElement.remove.className = 'not-valid';
@@ -109,6 +128,9 @@ function validationFail (element){
     element.parentElement.lastElementChild.hidden = false;
   }
 
+/*
+  Input Validators that test with regex and returns a boolean value
+*/
 const nameValidator = () => {
     const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(username.value);
     nameIsValid ? validationPass(username) : validationFail(username);
@@ -148,7 +170,10 @@ const activitiesValidator = () => {
       
       return activitiesIsValid;
 };
-
+/*
+    When the submit button is clicked, the form submmits
+    and refreshes if all the required fields are valid.
+*/
 form.addEventListener('submit', e => {
 
     //e.preventDefault();
@@ -178,7 +203,9 @@ form.addEventListener('submit', e => {
         }
     }
 });
-
+/*
+    Focus & Blur State Indicators 
+*/
 for (let i = 0; i < checkbox.length; i++) {
     checkbox[i].addEventListener('focus', (e) => {
         e.target.parentElement.classList.add('focus');
@@ -187,7 +214,9 @@ for (let i = 0; i < checkbox.length; i++) {
         e.target.parentElement.classList.remove('focus');
     });
 };
-
+/* 
+    Real Time Validation
+*/
 username.addEventListener('keyup', nameValidator)
 email.addEventListener('keyup', emailValidator)
 ccNum.addEventListener('keyup', ccNumValidator);
