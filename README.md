@@ -11,8 +11,8 @@ Testing real time validation with regular expressions
 
 ![Page Screen](/img/Screenshot_1.png)
 
-The USERNAME input field tests that there is at least a first name containing only letters, and allows for a middle and last name<br />
-/^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/
+The USERNAME input field tests that there is at least a first name containing only letters, and does not allow spaces<br />
+/^[A-Za-z]+$/
 
 The EMAIL input field tests that email is validly formatted.<br />
 /^[^@]+@[^@.]+\.[a-z]+$/i
