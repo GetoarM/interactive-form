@@ -174,7 +174,19 @@ const activitiesHint = document.getElementById('activities-hint');
 */
 const nameValidator = () => {
     const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(username.value);
-    nameIsValid ? validationPass(username, nameHint) : validationFail(username, nameHint);
+    // nameIsValid ? validationPass (username, nameHint) : validationFail (username, nameHint);
+
+    if (nameIsValid){
+        validationPass (username, nameHint)
+    } else if (username.value === ''){
+        nameHint.textContent = 'Name field cannot be blank';
+        validationFail(username, nameHint);
+    } else {
+        validationFail(username, nameHint)
+        nameHint.textContent = 'Name field cannot contain numbers or more than 3 spaces'
+
+    }
+
     return nameIsValid;
 }
 
