@@ -174,8 +174,6 @@ const activitiesHint = document.getElementById('activities-hint');
 */
 const nameValidator = () => {
     const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(username.value);
-    // nameIsValid ? validationPass (username, nameHint) : validationFail (username, nameHint);
-
     if (nameIsValid){
         validationPass (username, nameHint)
     } else if (username.value === ''){
