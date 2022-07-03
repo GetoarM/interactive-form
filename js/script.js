@@ -52,6 +52,7 @@ designSelectElement.addEventListener('change', (e) =>{
     When an activity is checked/unchecked, the total cost text below
     the activity section is updated in real time. 
 */
+const checkbox = document.querySelectorAll("input[type=checkbox]");
 const activities = document.getElementById('activities');
 const activitiesCost = document.getElementById('activities-cost');
 let totalCost = 0;
@@ -69,37 +70,19 @@ activities.addEventListener('change', (e) =>{
     The user is prevented from selecting two activities
     that are at the same day and time
 */  
-    if (checkbox[1].checked){
-        checkbox[3].disabled = true;
-        checkbox[3].parentElement.className = 'disabled';
+function checkActivities(item1, item2) {
+    if (item1.checked) {
+        item2.disabled = true;
+        item2.parentElement.className = "disabled";
     } else {
-        checkbox[3].disabled = false;
-        checkbox[3].parentElement.classList.remove('disabled');
+        item2.disabled = false;
+        item2.parentElement.classList.remove("disabled")
     }
-
-    if (checkbox[3].checked){
-        checkbox[1].disabled = true;
-        checkbox[1].parentElement.className = 'disabled';
-    } else {
-        checkbox[1].disabled = false;
-        checkbox[1].parentElement.classList.remove('disabled');
-    }
-
-    if (checkbox[2].checked){
-        checkbox[4].disabled = true;
-        checkbox[4].parentElement.className = 'disabled';
-    } else {
-        checkbox[4].disabled = false;
-        checkbox[4].parentElement.classList.remove('disabled');
-    }
-
-    if (checkbox[4].checked){
-        checkbox[2].disabled = true;
-        checkbox[2].parentElement.className = 'disabled';
-    } else {
-        checkbox[2].disabled = false;
-        checkbox[2].parentElement.classList.remove('disabled');
-    }
+}
+    checkActivities(checkbox[1], checkbox[3]);
+    checkActivities(checkbox[3], checkbox[1]);
+    checkActivities(checkbox[2], checkbox[4]);
+    checkActivities(checkbox[4], checkbox[2]);
 });
 
 /*
@@ -144,7 +127,6 @@ const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
 const ccNum = document.getElementById('cc-num');
 const form = document.querySelector('form');
-const checkbox = document.querySelectorAll("input[type=checkbox]");
 
 function validationPass (element, elementHint){
     element.parentElement.classList.add('valid');
